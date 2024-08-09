@@ -28,23 +28,53 @@ const Content = () => {
 
         // set the state to the new array
         setItems(listItems);
+
+        // Save the checked items to local storage
+        localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+    }
+
+    const handleDelete = (id) => {
+        // creating a new array that has filtered out the id whose trash can was clicked
+        const listItems = items.filter((item) => item.id !== id)
+
+        // set the state to the new array
+        setItems(listItems);
+
+        // Save the checked items to local storage
+        localStorage.setItem('shoppinglist', JSON.stringify(listItems));
     }
 
     return (
         <main>
-            <ul>
-                {items.map((item) => (
-                    <li className='item' key={item.id}>
-                        <input
-                            type="checkbox"
-                            onChange={() => handleCheck(item.id)}
-                            checked={item.checked}
-                        />
-                        <label>{item.item}</label>
-                        <FaTrashAlt role='button' tabIndex='0' />
-                    </li>
-                ))}
-            </ul>
+            {items.length ? (
+                <ul>
+                    {/* Map over the items and display them on the page as indicated */}
+                    {items.map((item) => (
+                        <li className='item' key={item.id}>
+                            <input
+                                type="checkbox"
+                                onChange={() => handleCheck(item.id)}
+                                checked={item.checked}
+                            />
+                            <label
+                                // Check the item on double click
+                                onDoubleClick={() => handleCheck(item.id)}
+
+                                // strike through the item if it is checked
+                                style={(item.checked) ? {textDecoration: 'line-through'} : null}
+                            >{item.item}</label>
+                            <FaTrashAlt 
+                                // run delete function on click
+                                onClick={() => handleDelete(item.id)}
+                                role='button' 
+                                tabIndex='0' 
+                            />
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p style={{ marginTop: '2rem' }}>Your list is empty.</p>
+            ) }
         </main>
     )
 }
