@@ -20,6 +20,16 @@ const Content = () => {
         },
     ]);
 
+    // Function to make an item checked
+    const handleCheck = (id) => {
+
+        // map over items, then set the item's checked state to the opposite of what it currently is
+        const listItems = items.map((item) => item.id === id ? { ...item, checked: !item.checked } : item);
+
+        // set the state to the new array
+        setItems(listItems);
+    }
+
     return (
         <main>
             <ul>
@@ -27,6 +37,7 @@ const Content = () => {
                     <li className='item' key={item.id}>
                         <input
                             type="checkbox"
+                            onChange={() => handleCheck(item.id)}
                             checked={item.checked}
                         />
                         <label>{item.item}</label>
