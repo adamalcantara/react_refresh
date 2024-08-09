@@ -30,7 +30,7 @@ const Content = () => {
                             checked={item.checked}
                         />
                         <label>{item.item}</label>
-                        <FaTrashAlt />
+                        <FaTrashAlt role='button' tabIndex='0' />
                     </li>
                 ))}
             </ul>
