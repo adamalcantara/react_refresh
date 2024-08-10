@@ -73,6 +73,7 @@ const Content = () => {
                     ))}
                 </ul>
             ) : (
+                // Alternate code to display if there is not anything in the list
                 <p style={{ marginTop: '2rem' }}>Your list is empty.</p>
             ) }
         </main>
