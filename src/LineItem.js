@@ -21,6 +21,8 @@ const LineItem = ({ item, handleCheck, handleDelete }) => {
                 onClick={() => handleDelete(item.id)}
                 role='button'
                 tabIndex='0'
+                // Accessibility for the trash can icon
+                aria-label={`Delete ${item.item}`}
             />
         </li>
     )
