@@ -22,6 +22,7 @@ function App() {
       item: "Item 3"
     },
   ]);
+  const [newItem, setNewItem] = useState('');
 
   // Function to make an item checked
   const handleCheck = (id) => {
@@ -47,10 +48,18 @@ function App() {
     localStorage.setItem('shoppinglist', JSON.stringify(listItems));
   }
 
+  const handleSubmit = (e) => {
+    console.log('submitted');
+  }
+
   return (
     <div className="App">
       <Header title="Grocery List" />
-      <AddItem />
+      <AddItem
+        newItem={newItem}
+        setNewItem={setNewItem}
+        handleSubmit={handleSubmit}
+      />
       <Content 
         items={items}
         handleCheck={handleCheck} 
