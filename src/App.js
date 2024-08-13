@@ -24,6 +24,14 @@ function App() {
   ]);
   const [newItem, setNewItem] = useState('');
 
+  const setAndSaveItems = (newItems) => {
+    // set the state to the new array
+    setItems(newItems);
+
+    // Save the checked items to local storage
+    localStorage.setItem('shoppinglist', JSON.stringify(newItems));
+  }
+
   const addItem = (item) => {
     // increment item id by getting the id of the last item and adding 1 to it
     const id = items.length ? items[items.length - 1].id + 1 : 1;
@@ -34,10 +42,7 @@ function App() {
     const listItems = [...items, myNewItem];
 
     // set the state to the new array
-    setItems(listItems);
-
-    // Save the checked items to local storage
-    localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+    setAndSaveItems(listItems);
   }
 
   // Function to make an item checked
@@ -47,10 +52,7 @@ function App() {
     const listItems = items.map((item) => item.id === id ? { ...item, checked: !item.checked } : item);
 
     // set the state to the new array
-    setItems(listItems);
-
-    // Save the checked items to local storage
-    localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+    setAndSaveItems(listItems);
   }
 
   const handleDelete = (id) => {
@@ -58,10 +60,7 @@ function App() {
     const listItems = items.filter((item) => item.id !== id)
 
     // set the state to the new array
-    setItems(listItems);
-
-    // Save the checked items to local storage
-    localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+    setAndSaveItems(listItems);
   }
 
   const handleSubmit = (e) => {
