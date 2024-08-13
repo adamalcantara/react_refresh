@@ -24,6 +24,22 @@ function App() {
   ]);
   const [newItem, setNewItem] = useState('');
 
+  const addItem = (item) => {
+    // increment item id by getting the id of the last item and adding 1 to it
+    const id = items.length ? items[items.length - 1].id + 1 : 1;
+
+    const myNewItem = { id, checked: false, item };
+
+    // Create a new array to update state with
+    const listItems = [...items, myNewItem];
+
+    // set the state to the new array
+    setItems(listItems);
+
+    // Save the checked items to local storage
+    localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+  }
+
   // Function to make an item checked
   const handleCheck = (id) => {
 
