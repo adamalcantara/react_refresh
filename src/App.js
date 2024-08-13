@@ -49,6 +49,8 @@ function App() {
   }
 
   const handleSubmit = (e) => {
+    // Prevent page reload
+    e.preventDefault();
     console.log('submitted');
   }
 
