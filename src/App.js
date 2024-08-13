@@ -51,7 +51,13 @@ function App() {
   const handleSubmit = (e) => {
     // Prevent page reload
     e.preventDefault();
-    console.log('submitted');
+
+    // If there isn't a new item, just exit the function
+    if(!newItem) return;
+
+    // call the addItem function
+    // Reset the state
+    setNewItem('');
   }
 
   return (
