@@ -71,6 +71,8 @@ function App() {
     if(!newItem) return;
 
     // call the addItem function
+    addItem(newItem);
+
     // Reset the state
     setNewItem('');
   }
