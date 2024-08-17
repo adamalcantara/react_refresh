@@ -76,7 +76,8 @@ function App() {
         setSearch={setSearch}
       />
       <Content 
-        items={items}
+        // Filter items and change to lower case for searchability
+        items={items.filter(item => ((item.item).toLowerCase()).includes(search.toLowerCase()))}
         handleCheck={handleCheck} 
         handleDelete={handleDelete} 
       />
