@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import SearchItem from './SearchItem';
 import Content from './Content';
@@ -9,6 +9,10 @@ function App() {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('shoppinglist')));
   const [newItem, setNewItem] = useState('');
   const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    console.log('updating items state');
+  }, [items])
 
   const setAndSaveItems = (newItems) => {
     // set the state to the new array
