@@ -6,7 +6,7 @@ import Footer from './Footer';
 import AddItem from './AddItem';
 
 function App() {
-  // Set items to use local storage. If there isn't anything 
+  // Set items to use local storage. If there isn't anything, set it to an empty array
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('shoppinglist')) || []);
   const [newItem, setNewItem] = useState('');
   const [search, setSearch] = useState('');
