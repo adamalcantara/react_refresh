@@ -12,16 +12,9 @@ function App() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    console.log('updating items state');
-  }, [items])
-
-  const setAndSaveItems = (newItems) => {
-    // set the state to the new array
-    setItems(newItems);
-
     // Save the checked items to local storage
-    localStorage.setItem('shoppinglist', JSON.stringify(newItems));
-  }
+    localStorage.setItem('shoppinglist', JSON.stringify(items));
+  }, [items])
 
   const addItem = (item) => {
     // increment item id by getting the id of the last item and adding 1 to it
@@ -33,7 +26,7 @@ function App() {
     const listItems = [...items, myNewItem];
 
     // set the state to the new array
-    setAndSaveItems(listItems);
+    setItems(listItems);
   }
 
   // Function to make an item checked
@@ -43,7 +36,7 @@ function App() {
     const listItems = items.map((item) => item.id === id ? { ...item, checked: !item.checked } : item);
 
     // set the state to the new array
-    setAndSaveItems(listItems);
+    setItems(listItems);
   }
 
   const handleDelete = (id) => {
@@ -51,7 +44,7 @@ function App() {
     const listItems = items.filter((item) => item.id !== id)
 
     // set the state to the new array
-    setAndSaveItems(listItems);
+    setItems(listItems);
   }
 
   const handleSubmit = (e) => {
